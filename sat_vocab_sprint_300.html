@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SAT Vocab Sprint — 50-question test</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#131b31;--line:#2a3652;--text:#f0f4ff;--muted:#9cabc8;--accent:#8ca9ff;--accent2:#c2d0ff;--good:#62d7a4;--bad:#ff7e8c;}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#1a2b50 0,#0b1020 45%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh;display:flex;justify-content:center;padding:22px 14px 40px}
+.app{width:min(760px,100%)}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);font-size:12px;letter-spacing:.13em;text-transform:uppercase;margin:0 0 16px}.brand{display:flex;align-items:center;gap:9px;font-weight:800;color:var(--accent2)}.logo{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,#9bb4ff,#6d7df3);color:#0b1020;display:grid;place-items:center;font-weight:1000;letter-spacing:0}.panel{background:linear-gradient(180deg,rgba(22,32,56,.97),rgba(17,26,46,.97));border:1px solid var(--line);box-shadow:0 24px 65px #02061475;border-radius:24px;padding:clamp(20px,5vw,38px)}.eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}.hero h1{font-size:clamp(34px,8vw,54px);line-height:1.03;letter-spacing:-.05em;margin:14px 0}.hero p{color:var(--muted);line-height:1.65;max-width:560px;margin:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:26px 0}.stat{border:1px solid var(--line);background:#0d1528aa;border-radius:16px;padding:15px}.stat b{display:block;font-size:24px;letter-spacing:-.04em}.stat span{display:block;color:var(--muted);font-size:12px;margin-top:4px}.btn{border:0;border-radius:13px;padding:15px 20px;font-size:15px;font-weight:800;cursor:pointer;transition:transform .12s,filter .12s}.btn:hover{filter:brightness(1.07);transform:translateY(-1px)}.primary{width:100%;background:var(--accent);color:#0b1020}.secondary{background:#1c2844;color:var(--text);border:1px solid var(--line)}.fineprint{color:var(--muted);font-size:12px;line-height:1.5;margin-top:14px}.hidden{display:none!important}
+.quizhead{display:flex;align-items:center;justify-content:space-between;gap:10px}.counter{font-size:13px;color:var(--muted);font-weight:700}.timer{display:flex;align-items:center;gap:9px;font-variant-numeric:tabular-nums}.timer-num{display:grid;place-items:center;width:44px;height:44px;border:2px solid var(--accent);border-radius:50%;font-size:17px;font-weight:900;color:var(--accent2)}.timer-num.low{color:var(--bad);border-color:var(--bad)}.progress{height:5px;background:#25314d;border-radius:9px;overflow:hidden;margin:18px 0 29px}.progress>div{height:100%;width:0;background:var(--accent);transition:width .14s linear}.question-label{font-size:12px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:800}.definition{font-size:clamp(23px,5.2vw,34px);line-height:1.25;letter-spacing:-.025em;margin:12px 0 24px;font-weight:760;min-height:90px}.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}.choice{display:flex;align-items:center;gap:12px;text-align:left;width:100%;min-height:66px;border:1px solid #34415f;border-radius:15px;background:#0c1427;color:var(--text);padding:13px 14px;font-size:15px;font-weight:680;cursor:pointer;overflow-wrap:anywhere}.choice:hover{background:#172442;border-color:#718be0}.letter{flex:0 0 29px;height:29px;border-radius:9px;display:grid;place-items:center;background:#202d4b;color:#bdcaff;font-size:12px;font-weight:900}.footrow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:20px;color:var(--muted);font-size:12px}.skip{padding:9px 12px;font-size:12px}.results h1{font-size:clamp(32px,7vw,46px);margin:12px 0 6px;letter-spacing:-.04em}.scoreline{font-size:16px;color:var(--muted)}.scorebig{font-size:62px;font-weight:900;letter-spacing:-.07em;color:var(--accent2);margin:20px 0 0}.resultstats{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0 24px}.pill{border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);font-size:12px}.review-title{margin:28px 0 12px;font-size:18px}.review{border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;background:#0d1528}.review .rdef{color:var(--muted);font-size:13px;margin:7px 0}.review .your{font-size:13px;color:var(--bad);margin:5px 0}.review .right{font-size:13px;color:var(--good);margin:5px 0}.review .qnum{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.1em}.resultactions{display:flex;gap:10px;margin-top:18px}.resultactions .btn{flex:1}.toggle{font-size:13px;color:var(--accent2);background:none;border:0;text-decoration:underline;cursor:pointer;padding:7px 0}.note{color:var(--muted);font-size:12px;line-height:1.5}
+@media(max-width:520px){body{padding:12px 9px 28px}.topline{font-size:10px}.stats{gap:7px}.stat{padding:11px}.stat b{font-size:21px}.choices{grid-template-columns:1fr}.choice{min-height:56px}.definition{min-height:0}.resultactions{flex-direction:column}.footrow{align-items:flex-start}}
+</style>
+</head><body><main class="app">
+<div class="topline"><div class="brand"><div class="logo">V</div> SAT VOCAB SPRINT</div><div>Vocabook v4 · Sets 1–5</div></div>
+<section class="panel hero" id="start">
+<div class="eyebrow">Timed vocabulary challenge</div><h1>50 definitions.<br>9 seconds each.</h1>
+<p>Choose the one word that matches each definition. Questions and answer choices are shuffled. The test randomly draws from all 300 words in the College Panda list. Build custom card slots to study selected words.</p>
+<div class="stats"><div class="stat"><b>50</b><span>random questions</span></div><div class="stat"><b>00:09</b><span>per definition</span></div><div class="stat"><b>4</b><span>choices each</span></div></div>
+<button class="btn primary" id="startBtn">Start test →</button><button class="btn secondary" id="openCardsBtn" style="width:100%;margin-top:10px">Study card slots →</button><div class="fineprint">No answer feedback during the test. Missed questions count as incorrect. At the end, you’ll see your score and review the mistakes.</div>
+</section>
+<section class="panel hidden" id="quiz">
+<div class="quizhead"><div class="counter" id="counter">QUESTION 1 / 50</div><div class="timer"><div class="timer-num" id="timerNum">9</div><div class="counter">SECONDS<br>LEFT</div></div></div>
+<div class="progress"><div id="progressBar"></div></div>
+<div class="question-label">Choose the matching word</div><div class="definition" id="definition"></div>
+<div class="choices" id="choices"></div>
+<div class="footrow"><span id="answeredLabel">Keep moving. Trust your first answer.</span><button class="btn secondary skip" id="skipBtn">Skip ↗</button></div>
+</section>
+<section class="panel results hidden" id="results">
+<div class="eyebrow">Test complete</div><h1 id="resultTitle">Score report</h1><div class="scorebig" id="scoreBig">0/50</div><div class="scoreline" id="scoreLine"></div>
+<div class="resultstats" id="resultStats"></div>
+<button class="toggle" id="reviewToggle">Show all 50 answers</button><div id="reviewList"></div>
+<div class="resultactions"><button class="btn primary" id="retryBtn">New random test ↻</button><button class="btn secondary" id="mistakesBtn">Review mistakes</button></div>
+<p class="note">Score: 1 point for each correct answer. A timeout or skipped question scores 0. The answers come from the definitions in the uploaded Vocabook (College Panda, Sets 1–5).</p>
+</section>
+
+<section class="panel hidden" id="cardsPanel" style="margin-top:16px">
+ <div class="eyebrow">Custom study decks</div><h1 style="font-size:clamp(28px,6vw,40px);margin:12px 0">Card slots</h1>
+ <p class="note">Create as many slots as you want. Each slot holds up to 20 words. Select words below, then add them to a slot. Cards show the Russian translation and the full English definition.</p>
+ <div id="slotList"></div>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;margin:16px 0"><button class="btn primary" id="addSlotBtn">＋ New slot</button><button class="btn secondary" id="backCardsBtn">← Back</button></div>
+ <div style="border-top:1px solid var(--line);padding-top:18px"><h2 style="font-size:18px">Choose words</h2><input id="wordSearch" placeholder="Search words or definitions…" style="width:100%;padding:13px;border-radius:12px;border:1px solid var(--line);background:#0c1427;color:var(--text);margin:8px 0 12px"><div id="wordPicker" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;max-height:420px;overflow:auto"></div></div>
+ <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px"><label style="align-self:center;color:var(--muted);font-size:13px">Add selected words to:</label><select id="targetSlot" style="padding:12px;border-radius:10px;background:#0c1427;color:var(--text);border:1px solid var(--line)"></select><button class="btn primary" id="addSelectedBtn">Add selected words</button></div>
+ <p class="note" id="cardNotice"></p>
+</section>
+</main>
+<script>
+const VOCAB = [{"word":"Erratic","def":"Unpredictable, inconsistent, irregular","ru":"непредсказуемый","tags":["variation","trait"]},{"word":"Secluded","def":"Hard to reach, hidden away","ru":"уединённый","tags":["place","access"]},{"word":"Fluctuate","def":"To rise and fall irregularly","ru":"колебаться","tags":["variation","change"]},{"word":"Exalt","def":"To praise, to worship","ru":"превозносить","tags":["speech","attitude"]},{"word":"Admonish","def":"To warn or scold someone","ru":"предостерегать","tags":["speech","discipline"]},{"word":"Abrupt","def":"Sudden, unexpected, without warning","ru":"резкий","tags":["variation","change"]},{"word":"Content","def":"Satisfied","ru":"довольный","tags":["emotion","attitude"]},{"word":"Eccentric","def":"Uncommon, strange","ru":"эксцентричный","tags":["trait","unusual"]},{"word":"Mired","def":"Stuck in mud","ru":"увязший","tags":["difficulty","obstacle"]},{"word":"Colloquial","def":"Used in casual conversation","ru":"разговорный","tags":["language","style"]},{"word":"Reconcile","def":"Settle one’s differences; make compatible; bring back to peace","ru":"примирять","tags":["relationship","resolve"]},{"word":"Alienate","def":"To cause someone to feel isolated or lonely","ru":"отдалять","tags":["relationship","emotion"]},{"word":"Distinguish","def":"To tell the difference between","ru":"различать","tags":["reason","comparison"]},{"word":"Adequate","def":"Sufficient, enough, acceptable","ru":"достаточный","tags":["sufficiency","quality"]},{"word":"Contend","def":"To deal with someone or something; to claim or state a belief confidently","ru":"утверждать; справляться","tags":["argument","action"]},{"word":"Skeptical","def":"Having doubts","ru":"скептически настроенный","tags":["belief","attitude"]},{"word":"Enfranchise","def":"To give the right to vote","ru":"предоставлять право голоса","tags":["politics","rights"]},{"word":"Sophisticated","def":"Having a lot of worldly experience and knowledge; complicated","ru":"искушённый; сложный","tags":["trait","complexity"]},{"word":"Radical","def":"Thorough, complete, extensive; fundamental, essential; revolutionary, extreme","ru":"радикальный","tags":["change","degree"]},{"word":"Formulate","def":"To create or think up","ru":"формулировать","tags":["creation","reason"]},{"word":"Attest","def":"To confirm or verify","ru":"подтверждать","tags":["evidence","proof"]},{"word":"Vexing","def":"Annoying, irritating","ru":"раздражающий","tags":["negative","emotion"]},{"word":"Unassuming","def":"Humble, low-key","ru":"скромный","tags":["trait","attitude"]},{"word":"Coerce","def":"To pressure or force someone to do something","ru":"принуждать","tags":["force","control"]},{"word":"Adept","def":"Very skilled at something","ru":"умелый","tags":["skill","ability"]},{"word":"Eloquent","def":"Fluent or persuasive in speaking or writing","ru":"красноречивый","tags":["language","communication"]},{"word":"Austere","def":"Plain and without decoration, comforts, or anything extra","ru":"строгий; аскетичный","tags":["style","quality"]},{"word":"Dread","def":"To fear, be afraid of","ru":"бояться","tags":["emotion","fear"]},{"word":"Inevitable","def":"Unavoidable","ru":"неизбежный","tags":["certainty","change"]},{"word":"To Stress","def":"To emphasize","ru":"подчёркивать","tags":["language","emphasis"]},{"word":"Spawn","def":"To produce, generate, or create","ru":"порождать","tags":["creation","cause"]},{"word":"Renounce","def":"To give up, deny, or surrender something","ru":"отрекаться","tags":["abandonment","surrender"]},{"word":"Unprecedented","def":"Never done or known before","ru":"беспрецедентный","tags":["novelty","change"]},{"word":"Broach","def":"To bring up a difficult subject for discussion","ru":"затрагивать тему","tags":["language","discussion"]},{"word":"Proxy","def":"A person authorized to act on behalf of another; a substitute","ru":"представитель","tags":["representation","authority"]},{"word":"Detrimental","def":"Harmful, damaging","ru":"вредный","tags":["negative","harm"]},{"word":"Secular","def":"Having no religious or spiritual basis","ru":"светский","tags":["religion","belief"]},{"word":"Innovative","def":"New and different","ru":"новаторский","tags":["novelty","creation"]},{"word":"Tangible","def":"Real and able to be shown or touched","ru":"осязаемый","tags":["reality","clarity"]},{"word":"Disseminate","def":"To spread widely, particularly information","ru":"распространять","tags":["spread","communication"]},{"word":"Delegate","def":"To assign a task to another person","ru":"делегировать","tags":["assignment","authority"]},{"word":"Apparent","def":"Clearly visible or understood; obvious","ru":"очевидный","tags":["clarity","knowledge"]},{"word":"Postulate","def":"To suggest or propose something","ru":"постулировать","tags":["hypothesis","reason"]},{"word":"Speculate","def":"To guess or form a theory without firm evidence","ru":"предполагать","tags":["hypothesis","uncertainty"]},{"word":"Bazaar","def":"A market selling a large variety of goods","ru":"базар","tags":["market","place"]},{"word":"Sporadic","def":"Scattered, irregular, unpredictable","ru":"эпизодический","tags":["variation","frequency"]},{"word":"Suffrage","def":"The right to vote","ru":"избирательное право","tags":["politics","rights"]},{"word":"Incredulous","def":"Unwilling or unable to believe something","ru":"недоверчивый","tags":["belief","attitude"]},{"word":"Idealistic","def":"Unrealistically aiming for perfection","ru":"идеалистичный","tags":["trait","aspiration"]},{"word":"Conflate","def":"To mix or combine into one, typically ideas","ru":"смешивать","tags":["combine","reason"]},{"word":"Paucity","def":"Poverty, scarcity","ru":"нехватка","tags":["amount","shortage"]},{"word":"Ephemeral","def":"Temporary, short-lived","ru":"мимолётный","tags":["duration","change"]},{"word":"Prompt","def":"To cause someone to take a course of action","ru":"побуждать","tags":["cause","action"]},{"word":"Reverence","def":"Deep respect for someone or something","ru":"почтение","tags":["respect","attitude"]},{"word":"Disparity","def":"A great difference","ru":"несоответствие","tags":["comparison","difference"]},{"word":"Dispassionate","def":"Not influenced by strong emotion; fair-minded","ru":"беспристрастный","tags":["judgment","emotion"]},{"word":"Phenomenon","def":"A noteworthy occurrence or situation","ru":"явление","tags":["event","unusual"]},{"word":"Boast","def":"To brag, to show off","ru":"хвастаться","tags":["speech","pride"]},{"word":"Irksome","def":"Irritating, annoying","ru":"досадный","tags":["negative","emotion"]},{"word":"Allude","def":"To suggest or call attention to something indirectly; make a reference","ru":"намекать","tags":["language","indirect"]},{"word":"Omnipotence","def":"Having unlimited or great power","ru":"всемогущество","tags":["power","authority"]},{"word":"Provoke","def":"To cause a reaction or emotion, usually anger; to trigger","ru":"провоцировать","tags":["cause","emotion"]},{"word":"Indulge","def":"To allow oneself to enjoy the pleasure of","ru":"позволять себе","tags":["pleasure","attitude"]},{"word":"Entrenched","def":"Firmly established and unlikely to change","ru":"укоренившийся","tags":["stability","belief"]},{"word":"Inherent","def":"Built-in; existing as a permanent or essential characteristic","ru":"присущий","tags":["nature","quality"]},{"word":"Vernacular","def":"Everyday informal language; local dialect","ru":"просторечие","tags":["language","style"]},{"word":"Inquisition","def":"Interrogation, questioning","ru":"допрос","tags":["questioning","investigation"]},{"word":"Anecdote","def":"A short personal story","ru":"анекдот; история","tags":["story","communication"]},{"word":"Malign","def":"Evil in nature, harmful","ru":"злонамеренный","tags":["negative","harm"]},{"word":"Anomaly","def":"An oddity; something that is not normal","ru":"аномалия","tags":["unusual","event"]},{"word":"Inhibit","def":"To hold someone or something back; to suppress or prevent","ru":"сдерживать","tags":["restriction","control"]},{"word":"Mutable","def":"Changeable","ru":"изменчивый","tags":["variation","change"]},{"word":"Petty","def":"Of little importance; caring too much about trivial matters","ru":"мелочный","tags":["importance","attitude"]},{"word":"Avid","def":"Passionate about something","ru":"увлечённый","tags":["passion","attitude"]},{"word":"Invoke","def":"To call on or refer to something","ru":"призывать","tags":["language","appeal"]},{"word":"Imprudent","def":"Foolish, reckless","ru":"неблагоразумный","tags":["judgment","trait"]},{"word":"Tenacity","def":"Persistence, determination","ru":"настойчивость","tags":["persistence","effort"]},{"word":"Venerable","def":"Respected","ru":"почтенный","tags":["respect","status"]},{"word":"Authoritarian","def":"Enforcing strict obedience to authority","ru":"авторитарный","tags":["authority","control"]},{"word":"Quarrel","def":"An angry argument or disagreement","ru":"ссора","tags":["conflict","argument"]},{"word":"Yield","def":"To produce or generate a result; to surrender","ru":"уступать; приносить","tags":["result","surrender"]},{"word":"Ambivalent","def":"Having mixed feelings","ru":"двояко относящийся","tags":["emotion","uncertainty"]},{"word":"Endeavor","def":"To try hard to do something","ru":"стараться","tags":["effort","action"]},{"word":"Insurrection","def":"A violent uprising or rebellion","ru":"восстание","tags":["rebellion","conflict"]},{"word":"Contemplate","def":"To think about for a long time","ru":"обдумывать","tags":["thinking","reason"]},{"word":"Compel","def":"To force someone to do something","ru":"вынуждать","tags":["force","control"]},{"word":"Feasible","def":"Possible to do easily or conveniently","ru":"осуществимый","tags":["possibility","practicality"]},{"word":"Conjecture","def":"An unproven opinion or conclusion; a guess","ru":"догадка","tags":["hypothesis","uncertainty"]},{"word":"Arbitrary","def":"Based on random choice or personal impulse rather than reason or system","ru":"произвольный","tags":["reasonlessness","choice"]},{"word":"Reinforce","def":"To make stronger","ru":"укреплять","tags":["strength","change"]},{"word":"To Temper","def":"To serve as a neutralizing or counterbalancing force to something","ru":"смягчать; уравновешивать","tags":["moderation","change"]},{"word":"Decree","def":"An official order or command","ru":"указ","tags":["authority","command"]},{"word":"Brevity","def":"Concise use of words in writing or speech","ru":"краткость","tags":["language","conciseness"]},{"word":"Equivocal","def":"Open to more than one interpretation; unclear","ru":"двусмысленный","tags":["uncertainty","clarity"]},{"word":"Stronghold","def":"A place that is strongly defended; a fortress","ru":"крепость","tags":["defense","place"]},{"word":"Conceive","def":"To form or create a plan or idea","ru":"придумывать","tags":["creation","thinking"]},{"word":"Vanity","def":"Excessive pride in one’s appearance or achievements","ru":"тщеславие","tags":["pride","attitude"]},{"word":"Sluggish","def":"Slow-moving","ru":"медлительный","tags":["speed","quality"]},{"word":"Intuition","def":"Instinct; the ability to understand something immediately","ru":"интуиция","tags":["thinking","knowledge"]},{"word":"Inexorable","def":"Impossible to stop or prevent","ru":"неумолимый","tags":["certainty","change"]},{"word":"Engender","def":"To cause or give rise to a feeling, situation, or condition","ru":"порождать","tags":["cause","creation"]},{"word":"Temperament","def":"A person’s nature, character, or frame of mind","ru":"темперамент","tags":["nature","trait"]},{"word":"Upheaval","def":"A sudden change or disruption; chaos","ru":"потрясение","tags":["change","disruption"]},{"word":"Embrace","def":"To welcome with open arms; to accept or support willingly","ru":"принимать","tags":["acceptance","attitude"]},{"word":"Substantiate","def":"To show to be true","ru":"подтверждать","tags":["evidence","proof"]},{"word":"Superficial","def":"Shallow, on the surface","ru":"поверхностный","tags":["depth","quality"]},{"word":"Sovereignty","def":"Supreme power or authority","ru":"суверенитет","tags":["authority","politics"]},{"word":"Lavish","def":"Luxurious","ru":"роскошный","tags":["luxury","quality"]},{"word":"Crux","def":"The essence, the main point","ru":"суть","tags":["importance","meaning"]},{"word":"Indifference","def":"Lack of interest and concern","ru":"безразличие","tags":["emotion","attitude"]},{"word":"Tact","def":"Skillfulness and sensitivity in dealing with others or difficult issues","ru":"тактичность","tags":["social_skill","judgment"]},{"word":"Abundant","def":"Plentiful","ru":"обильный","tags":["amount","sufficiency"]},{"word":"Viable","def":"Capable of working successfully; realistic, doable","ru":"жизнеспособный","tags":["possibility","practicality"]},{"word":"Scorn","def":"Contempt; the feeling that someone or something is worthless","ru":"презрение","tags":["negative","judgment"]},{"word":"Transgress","def":"To misbehave or disobey","ru":"нарушать","tags":["rule_breaking","action"]},{"word":"Analogy","def":"A comparison between two things","ru":"аналогия","tags":["comparison","reason"]},{"word":"Objection","def":"A reason for disagreeing","ru":"возражение","tags":["conflict","argument"]},{"word":"Construe","def":"To interpret in a particular way","ru":"толковать","tags":["interpretation","reason"]},{"word":"Procure","def":"To obtain or acquire","ru":"добывать","tags":["obtaining","action"]},{"word":"Evoke","def":"To bring to mind","ru":"вызывать","tags":["memory","cause"]},{"word":"Depiction","def":"Portrayal, illustration","ru":"изображение","tags":["representation","communication"]},{"word":"Burden","def":"A difficulty, problem, or responsibility","ru":"бремя","tags":["difficulty","obligation"]},{"word":"Recollection","def":"A memory; the act of remembering","ru":"воспоминание","tags":["memory","thinking"]},{"word":"Tumult","def":"Confusion or disorder","ru":"суматоха","tags":["disorder","conflict"]},{"word":"Concede","def":"To admit that something is true after first denying it","ru":"признавать","tags":["admission","argument"]},
+{"word": "Demeanor", "def": "manner, attitude, appearance", "tags": ["attitude", "quality"], "ru": "манера поведения", "n": 126},
+{"word": "Emigration", "def": "the act of leaving one’s own country", "tags": ["trait", "action"], "ru": "эмиграция", "n": 127},
+{"word": "Irate", "def": "angry, furious", "tags": ["conflict"], "ru": "разъярённый", "n": 128},
+{"word": "Tentative", "def": "unconfirmed, subject to change", "tags": ["change"], "ru": "предварительный", "n": 129},
+{"word": "Merely", "def": "only; just", "tags": ["trait", "action"], "ru": "лишь", "n": 130},
+{"word": "Deceive", "def": "to trick or mislead someone", "tags": ["trait", "action"], "ru": "обманывать", "n": 131},
+{"word": "Trifling", "def": "unimportant, insignificant", "tags": ["trait", "action"], "ru": "незначительный", "n": 132},
+{"word": "Labyrinthine", "def": "complicated or confusing", "tags": ["trait", "action"], "ru": "запутанный", "n": 133},
+{"word": "Decrepit", "def": "1) weak, disabled 2) in a run-down state, decayed", "tags": ["quality"], "ru": "ветхий", "n": 134},
+{"word": "Corroborate", "def": "to confirm, to verify", "tags": ["trait", "action"], "ru": "подтверждать", "n": 135},
+{"word": "Obstinacy", "def": "stubbornness, unwilling to change", "tags": ["change"], "ru": "упрямство", "n": 136},
+{"word": "Confinement", "def": "imprisonment, captivity", "tags": ["trait", "action"], "ru": "заключение", "n": 137},
+{"word": "Monotony", "def": "boredom, dullness, lack of variety", "tags": ["trait", "action"], "ru": "однообразие", "n": 138},
+{"word": "Degrade", "def": "treat with disrespect", "tags": ["attitude"], "ru": "унижать", "n": 139},
+{"word": "Dilemma", "def": "a situation in which a difficult choice has to be made between 2 or more alternatives", "tags": ["difficulty"], "ru": "дилемма", "n": 140},
+{"word": "Conventional", "def": "traditional, accepted, mainstream, standard", "tags": ["trait", "action"], "ru": "традиционный", "n": 141},
+{"word": "Proliferate", "def": "increase or grow rapidly", "tags": ["change"], "ru": "быстро размножаться", "n": 142},
+{"word": "Aesthetic", "def": "concerned with beauty or the appreciation of beauty", "tags": ["relationship"], "ru": "эстетический", "n": 143},
+{"word": "Prominent", "def": "important; famous", "tags": ["trait", "action"], "ru": "выдающийся", "n": 144},
+{"word": "Unwieldy", "def": "difficult to carry or move", "tags": ["difficulty"], "ru": "неуклюжий", "n": 145},
+{"word": "Unilaterally", "def": "used to indicate that something is done by only one person or group, without the agreement of others", "tags": ["trait", "action"], "ru": "в одностороннем порядке", "n": 146},
+{"word": "Stimulate", "def": "to trigger, spark, or activate; to excite", "tags": ["trait", "action"], "ru": "стимулировать", "n": 147},
+{"word": "Abate", "def": "to become less intense or widespread", "tags": ["change"], "ru": "ослабевать", "n": 148},
+{"word": "Diligent", "def": "hard-working", "tags": ["ability"], "ru": "прилежный", "n": 149},
+{"word": "Relegate", "def": "to downgrade, to lower in rank or status", "tags": ["authority"], "ru": "понижать в ранге", "n": 150},
+{"word": "Demur", "def": "to raise doubts or to protest", "tags": ["trait", "action"], "ru": "возражать", "n": 151},
+{"word": "Novel", "def": "new or unusual in an interesting way", "tags": ["time"], "ru": "новый", "n": 152},
+{"word": "Abstract", "def": "existing in thought or as an idea but not having a physical or concrete existence; conceptual", "tags": ["reason", "quality"], "ru": "абстрактный", "n": 153},
+{"word": "Vestigial", "def": "undeveloped, nonfunctional", "tags": ["trait", "action"], "ru": "рудиментарный", "n": 154},
+{"word": "Preoccupied With", "def": "obsessed with something", "tags": ["trait", "action"], "ru": "поглощённый мыслями", "n": 155},
+{"word": "Optimistic", "def": "hopeful and confident about the future", "tags": ["time"], "ru": "оптимистичный", "n": 156},
+{"word": "Remembrance", "def": "the act of remembering something; a memory", "tags": ["trait", "action"], "ru": "воспоминание", "n": 157},
+{"word": "Retain", "def": "to keep, to hold on to", "tags": ["time"], "ru": "сохранять", "n": 158},
+{"word": "Susceptible", "def": "easily influenced or harmed by something; vulnerable", "tags": ["trait", "action"], "ru": "восприимчивый", "n": 159},
+{"word": "Strenuous", "def": "difficult, exhausting", "tags": ["difficulty"], "ru": "изнурительный", "n": 160},
+{"word": "Enchantment", "def": "magic, charm, fascination", "tags": ["trait", "action"], "ru": "очарование", "n": 161},
+{"word": "Subservient", "def": "prepared to obey others, submissive, less important", "tags": ["trait", "action"], "ru": "подчинённый", "n": 162},
+{"word": "Empirical", "def": "based on experience rather than theory or pure logic", "tags": ["reason"], "ru": "эмпирический", "n": 163},
+{"word": "Hostile", "def": "unfriendly, threatening", "tags": ["conflict", "relationship"], "ru": "враждебный", "n": 164},
+{"word": "Promulgate", "def": "to make widely known, to publicize", "tags": ["trait", "action"], "ru": "обнародовать", "n": 165},
+{"word": "Enact", "def": "to make law, to put into practice (a belief, idea, or suggestion)", "tags": ["reason", "authority"], "ru": "вводить в действие", "n": 166},
+{"word": "Abject", "def": "miserable, hopeless, awful", "tags": ["trait", "action"], "ru": "жалкий", "n": 167},
+{"word": "Expend", "def": "to use up, to consume", "tags": ["trait", "action"], "ru": "расходовать", "n": 168},
+{"word": "Yielding", "def": "giving in to or complying with the requests of others", "tags": ["communication"], "ru": "уступчивый", "n": 169},
+{"word": "Ignominious", "def": "embarrassing, shameful", "tags": ["trait", "action"], "ru": "позорный", "n": 170},
+{"word": "Naive", "def": "showing a lack of experience, wisdom, or judgment", "tags": ["trait", "action"], "ru": "наивный", "n": 171},
+{"word": "Acquisition", "def": "something that is bought or obtained, an act of purchase", "tags": ["trait", "action"], "ru": "приобретение", "n": 172},
+{"word": "Affluent", "def": "wealthy", "tags": ["amount"], "ru": "состоятельный", "n": 173},
+{"word": "Consolidate", "def": "1) strengthen 2) combine or unite", "tags": ["change"], "ru": "укреплять; объединять", "n": 174},
+{"word": "Pious", "def": "very religious or spiritual", "tags": ["trait", "action"], "ru": "благочестивый", "n": 175},
+{"word": "Aggregate", "def": "collection or sum total", "tags": ["trait", "action"], "ru": "совокупность", "n": 176},
+{"word": "Scatterbrained", "def": "disorganized, forgetful", "tags": ["trait", "action"], "ru": "рассеянный", "n": 177},
+{"word": "Yearn", "def": "to have an intense feeling of longing for something", "tags": ["attitude"], "ru": "страстно желать", "n": 178},
+{"word": "Consummate (Adj.)", "def": "complete or perfect, having a high degree of skill", "tags": ["ability"], "ru": "совершенный", "n": 179},
+{"word": "Endorse", "def": "to support", "tags": ["attitude"], "ru": "поддерживать", "n": 180},
+{"word": "Ascertain", "def": "to find (something) out for certain", "tags": ["trait", "action"], "ru": "устанавливать точно", "n": 181},
+{"word": "Onerous", "def": "involving a lot of effort, difficult", "tags": ["difficulty"], "ru": "обременительный", "n": 182},
+{"word": "Objective (Adj.)", "def": "fair-minded, not influenced by personal feelings", "tags": ["attitude"], "ru": "объективный", "n": 183},
+{"word": "Aspire", "def": "to hope to achieve something or be successful", "tags": ["ability"], "ru": "стремиться", "n": 184},
+{"word": "Obsolete", "def": "no longer produced or used; out of date", "tags": ["trait", "action"], "ru": "устаревший", "n": 185},
+{"word": "Inflammatory", "def": "arousing angry or violent feelings", "tags": ["conflict", "attitude"], "ru": "провокационный", "n": 186},
+{"word": "Sentiment", "def": "a view of or attitude towards a situation or event; a general feeling or opinion", "tags": ["reason", "attitude"], "ru": "мнение; чувство", "n": 187},
+{"word": "Candor", "def": "honesty", "tags": ["trait", "action"], "ru": "искренность", "n": 188},
+{"word": "Materialistic", "def": "excessively concerned with material possessions or money", "tags": ["amount", "relationship"], "ru": "материалистичный", "n": 189},
+{"word": "Prejudice", "def": "a dislike or unfair opinion (of someone) that is not based on reason or actual experience", "tags": ["reason"], "ru": "предубеждение", "n": 190},
+{"word": "Distinct", "def": "clearly separate and different", "tags": ["trait", "action"], "ru": "отличающийся", "n": 191},
+{"word": "Deference", "def": "respect", "tags": ["attitude"], "ru": "почтение", "n": 192},
+{"word": "Extensive", "def": "large in amount or scale", "tags": ["amount"], "ru": "обширный", "n": 193},
+{"word": "Impose", "def": "1) to force the acceptance of something 2) to cause inconvenience to someone", "tags": ["trait", "action"], "ru": "навязывать", "n": 194},
+{"word": "Articulate", "def": "having the ability to speak fluently and persuasively", "tags": ["communication", "ability"], "ru": "выразительный", "n": 195},
+{"word": "Pristine", "def": "original and pure; not spoiled or worn from use", "tags": ["trait", "action"], "ru": "нетронутый", "n": 196},
+{"word": "Veranda", "def": "a porch or balcony", "tags": ["trait", "action"], "ru": "веранда", "n": 197},
+{"word": "Atypical", "def": "unusual, uncommon", "tags": ["trait", "action"], "ru": "нетипичный", "n": 198},
+{"word": "Subjugate", "def": "to bring under domination or control, to conquer", "tags": ["authority"], "ru": "покорять", "n": 199},
+{"word": "Ubiquitous", "def": "everywhere, universal", "tags": ["trait", "action"], "ru": "повсеместный", "n": 200},
+{"word": "Altercation", "def": "a noisy argument or disagreement", "tags": ["conflict"], "ru": "ссора", "n": 201},
+{"word": "Robust", "def": "strong and healthy, durable", "tags": ["trait", "action"], "ru": "крепкий", "n": 202},
+{"word": "Subvert", "def": "to damage or weaken the authority of an established system", "tags": ["change", "authority"], "ru": "подрывать", "n": 203},
+{"word": "Melodramatic", "def": "exaggerated, sensationalized, or overemotional", "tags": ["trait", "action"], "ru": "мелодраматичный", "n": 204},
+{"word": "Glut", "def": "an excess supply of something", "tags": ["amount"], "ru": "избыток", "n": 205},
+{"word": "Antipathy", "def": "hatred, dislike", "tags": ["trait", "action"], "ru": "неприязнь", "n": 206},
+{"word": "Perilous", "def": "dangerous", "tags": ["conflict"], "ru": "опасный", "n": 207},
+{"word": "Conception", "def": "1) origin or beginning 2) an idea or concept", "tags": ["reason", "time"], "ru": "концепция; возникновение", "n": 208},
+{"word": "Repose", "def": "rest, relaxation", "tags": ["trait", "action"], "ru": "отдых", "n": 209},
+{"word": "Impede", "def": "to create difficulties for someone or something, resulting in delay", "tags": ["difficulty"], "ru": "препятствовать", "n": 210},
+{"word": "Contradiction", "def": "a combination of statements or ideas that are opposed to one another; inconsistency", "tags": ["reason", "quality"], "ru": "противоречие", "n": 211},
+{"word": "Judgmental", "def": "having an excessively critical point of view; disapproving", "tags": ["amount"], "ru": "осуждающий", "n": 212},
+{"word": "Dismal", "def": "depressing, gloomy", "tags": ["trait", "action"], "ru": "мрачный", "n": 213},
+{"word": "Ambiguous", "def": "open to more than one interpretation; unclear", "tags": ["reason"], "ru": "двусмысленный", "n": 214},
+{"word": "Wayward", "def": "difficult to control or predict because of unusual behavior", "tags": ["authority", "difficulty"], "ru": "неуправляемый", "n": 215},
+{"word": "Implication", "def": "1) a conclusion that can be drawn from something 2) a consequence or result", "tags": ["trait", "action"], "ru": "следствие; подразумеваемый смысл", "n": 216},
+{"word": "Deploy", "def": "to bring into effective action", "tags": ["ability"], "ru": "развёртывать", "n": 217},
+{"word": "Credibility", "def": "believability, authority", "tags": ["authority", "ability"], "ru": "достоверность", "n": 218},
+{"word": "Complacent", "def": "overly satisfied or pleased with oneself", "tags": ["trait", "action"], "ru": "самодовольный", "n": 219},
+{"word": "Convoke", "def": "to summon, to call together", "tags": ["trait", "action"], "ru": "созывать", "n": 220},
+{"word": "Mocking", "def": "making fun of someone or something in a cruel way", "tags": ["trait", "action"], "ru": "насмешливый", "n": 221},
+{"word": "Prospect", "def": "the possibility or likelihood of some future event occurring", "tags": ["time"], "ru": "перспектива", "n": 222},
+{"word": "Amicable", "def": "friendly", "tags": ["relationship"], "ru": "дружелюбный", "n": 223},
+{"word": "Predecessor", "def": "someone or something that came before", "tags": ["trait", "action"], "ru": "предшественник", "n": 224},
+{"word": "Deter", "def": "to discourage (someone) from doing something", "tags": ["trait", "action"], "ru": "удерживать; предотвращать", "n": 225},
+{"word": "Indignation", "def": "anger or annoyance", "tags": ["conflict"], "ru": "негодование", "n": 226},
+{"word": "Fetter", "def": "to restrict or restrain, to put in chains", "tags": ["trait", "action"], "ru": "оковы; сковывать", "n": 227},
+{"word": "Rigid", "def": "stiff, firm, unchangeable", "tags": ["change"], "ru": "жёсткий", "n": 228},
+{"word": "Cultivate", "def": "to grow, to develop", "tags": ["change"], "ru": "развивать", "n": 229},
+{"word": "Juvenile", "def": "young, childish, immature", "tags": ["trait", "action"], "ru": "юный; незрелый", "n": 230},
+{"word": "Convulsion", "def": "a sudden, violent, irregular movement of the body", "tags": ["trait", "action"], "ru": "судорожное движение", "n": 231},
+{"word": "Devise", "def": "to plan or invent by careful thought", "tags": ["relationship"], "ru": "разрабатывать", "n": 232},
+{"word": "Immure", "def": "to imprison someone against their will", "tags": ["trait", "action"], "ru": "заточать", "n": 233},
+{"word": "Perturb", "def": "to make someone anxious or unsettled; to disturb", "tags": ["trait", "action"], "ru": "тревожить", "n": 234},
+{"word": "Solicitude", "def": "care or concern for someone or something", "tags": ["relationship"], "ru": "забота", "n": 235},
+{"word": "Pervasive", "def": "spreading widely throughout an area or group of people", "tags": ["change", "relationship"], "ru": "всепроникающий", "n": 236},
+{"word": "Tyranny", "def": "cruel and abusive government or rule", "tags": ["authority"], "ru": "тирания", "n": 237},
+{"word": "Apprehensive", "def": "anxious or fearful that something bad or unpleasant will happen", "tags": ["trait", "action"], "ru": "опасающийся", "n": 238},
+{"word": "Provision", "def": "1) a condition or requirement in a legal document 2) the act of providing services or resources", "tags": ["trait", "action"], "ru": "положение; обеспечение", "n": 239},
+{"word": "Insolent", "def": "showing a rude lack of respect", "tags": ["attitude"], "ru": "дерзкий", "n": 240},
+{"word": "Consensus", "def": "general agreement", "tags": ["trait", "action"], "ru": "согласие", "n": 241},
+{"word": "Discord", "def": "disagreement between people", "tags": ["conflict", "relationship"], "ru": "раздор", "n": 242},
+{"word": "Complement (Verb)", "def": "to add to (something) in a way that enhances or completes it", "tags": ["trait", "action"], "ru": "дополнять", "n": 243},
+{"word": "Mortify", "def": "to cause (someone) to feel embarrassed, ashamed, or humiliated", "tags": ["trait", "action"], "ru": "смущать", "n": 244},
+{"word": "Dissipate", "def": "to disappear or evaporate", "tags": ["trait", "action"], "ru": "рассеиваться", "n": 245},
+{"word": "Doctrine", "def": "a belief or set of beliefs", "tags": ["trait", "action"], "ru": "доктрина", "n": 246},
+{"word": "Incomprehensible", "def": "not able to be understood", "tags": ["trait", "action"], "ru": "непостижимый", "n": 247},
+{"word": "Recount", "def": "to tell someone about something, to give a report of an event", "tags": ["communication"], "ru": "пересказывать", "n": 248},
+{"word": "Inefficacious", "def": "unable to produce the intended result", "tags": ["trait", "action"], "ru": "неэффективный", "n": 249},
+{"word": "Adversary", "def": "one’s opponent or enemy", "tags": ["conflict"], "ru": "противник", "n": 250},
+{"word": "Endow", "def": "to provide, to supply", "tags": ["amount"], "ru": "наделять", "n": 251},
+{"word": "Confound", "def": "to cause surprise or confusion in someone", "tags": ["trait", "action"], "ru": "сбивать с толку", "n": 252},
+{"word": "Assert", "def": "to state a fact or belief confidently and forcefully", "tags": ["quality"], "ru": "утверждать", "n": 253},
+{"word": "Undermine", "def": "to gradually damage or weaken someone or something", "tags": ["change"], "ru": "подрывать", "n": 254},
+{"word": "Paradox", "def": "a statement or situation that may be true but seems impossible or difficult to understand because it contains two opposite facts or characteristics", "tags": ["difficulty", "ability"], "ru": "парадокс", "n": 255},
+{"word": "Apt", "def": "appropriate or suitable in the circumstances", "tags": ["trait", "action"], "ru": "подходящий", "n": 256},
+{"word": "Competent", "def": "having the necessary ability, knowledge, or skill to do something successfully", "tags": ["ability"], "ru": "компетентный", "n": 257},
+{"word": "Severity", "def": "the quality of being very unpleasant, unkind, or difficult", "tags": ["difficulty"], "ru": "суровость", "n": 258},
+{"word": "Dismay", "def": "a feeling of shock and unhappiness", "tags": ["attitude"], "ru": "смятение", "n": 259},
+{"word": "Usurp", "def": "to take power or control of something by force or without the right to do so", "tags": ["authority"], "ru": "узурпировать", "n": 260},
+{"word": "Nostalgic", "def": "feeling happy and also slightly sad when you think about things that happened in the past", "tags": ["attitude", "time"], "ru": "ностальгирующий", "n": 261},
+{"word": "Ornate", "def": "having a lot of complex patterns or decoration", "tags": ["quality"], "ru": "витиеватый", "n": 262},
+{"word": "Hierarchy", "def": "a system in which people or things are put at various levels or ranks according to their importance", "tags": ["authority", "relationship"], "ru": "иерархия", "n": 263},
+{"word": "Irrational", "def": "not logical or reasonable", "tags": ["reason"], "ru": "иррациональный", "n": 264},
+{"word": "Bluster", "def": "talk intended to seem important or threatening but which is not taken seriously and has little effect", "tags": ["trait", "action"], "ru": "показная бравада", "n": 265},
+{"word": "Subordinate", "def": "having a lower or less important position", "tags": ["trait", "action"], "ru": "подчинённый", "n": 266},
+{"word": "Malicious", "def": "intending to cause harm; evil", "tags": ["trait", "action"], "ru": "злонамеренный", "n": 267},
+{"word": "Amend", "def": "to revise, to make changes", "tags": ["change"], "ru": "исправлять", "n": 268},
+{"word": "Conform", "def": "to behave according to an expectation or rule", "tags": ["authority"], "ru": "соответствовать", "n": 269},
+{"word": "Tout", "def": "to advertise or praise something (often to sell it)", "tags": ["attitude", "communication"], "ru": "рекламировать", "n": 270},
+{"word": "Permeate", "def": "to spread throughout something", "tags": ["change"], "ru": "проникать", "n": 271},
+{"word": "Incantation", "def": "a series of words said as a magic spell or charm", "tags": ["communication"], "ru": "заклинание", "n": 272},
+{"word": "Impervious", "def": "not able to be influenced, hurt, or damaged", "tags": ["trait", "action"], "ru": "непроницаемый", "n": 273},
+{"word": "Actuate", "def": "1) to cause (a machine or device) to operate 2) to cause (someone) to act in a particular way", "tags": ["trait", "action"], "ru": "приводить в действие", "n": 274},
+{"word": "Versatility", "def": "ability to adapt to many different functions or activities", "tags": ["ability"], "ru": "универсальность", "n": 275},
+{"word": "Proclaim", "def": "to announce officially or publicly", "tags": ["communication"], "ru": "провозглашать", "n": 276},
+{"word": "Obeisance", "def": "deep respect", "tags": ["attitude"], "ru": "почтение", "n": 277},
+{"word": "Modest", "def": "1) humble, not showy 2) not large in size or amount", "tags": ["attitude", "amount"], "ru": "скромный", "n": 278},
+{"word": "Adorn", "def": "to decorate", "tags": ["trait", "action"], "ru": "украшать", "n": 279},
+{"word": "Solitude", "def": "the state or situation of being alone", "tags": ["relationship", "quality"], "ru": "уединение", "n": 280},
+{"word": "Deplete", "def": "to use up the supply or resources of", "tags": ["amount"], "ru": "истощать", "n": 281},
+{"word": "Solemn", "def": "having or showing serious purpose and determination; formal", "tags": ["trait", "action"], "ru": "торжественный", "n": 282},
+{"word": "Proponent", "def": "a person who supports an idea, plan, or cause", "tags": ["reason", "attitude"], "ru": "сторонник", "n": 283},
+{"word": "Keen", "def": "sharp; highly developed (usually the senses)", "tags": ["trait", "action"], "ru": "острый; развитый", "n": 284},
+{"word": "Engulf", "def": "to surround and cover completely", "tags": ["trait", "action"], "ru": "поглощать", "n": 285},
+{"word": "Diverge", "def": "to go in different directions from the same point, to become different", "tags": ["change"], "ru": "расходиться", "n": 286},
+{"word": "Squalid", "def": "extremely dirty, poor, and unpleasant", "tags": ["quality"], "ru": "убогий", "n": 287},
+{"word": "Hypothetical", "def": "imagined or suggested but not necessarily real or true", "tags": ["trait", "action"], "ru": "гипотетический", "n": 288},
+{"word": "Pressing", "def": "urgent or needing to be dealt with immediately", "tags": ["difficulty"], "ru": "срочный", "n": 289},
+{"word": "Solicitation", "def": "a request for money, information, or help", "tags": ["communication", "amount"], "ru": "обращение с просьбой", "n": 290},
+{"word": "Meddle", "def": "interfere in something that is not one’s concern", "tags": ["relationship"], "ru": "вмешиваться", "n": 291},
+{"word": "Coarse", "def": "1) rough, not smooth 2) rude or offensive in manner or speech", "tags": ["trait", "action"], "ru": "грубый", "n": 292},
+{"word": "Reproach", "def": "to criticize or express disapproval with someone", "tags": ["conflict"], "ru": "упрекать", "n": 293},
+{"word": "Immerse", "def": "1) to put something completely under a liquid 2) to involve someone completely in an activity", "tags": ["trait", "action"], "ru": "погружать", "n": 294},
+{"word": "Clout", "def": "power and influence (especially in politics or business)", "tags": ["authority"], "ru": "влияние", "n": 295},
+{"word": "Exacerbate", "def": "to make something that is already bad worse", "tags": ["trait", "action"], "ru": "усугублять", "n": 296},
+{"word": "Dubious", "def": "doubtful", "tags": ["trait", "action"], "ru": "сомнительный", "n": 297},
+{"word": "Plausible", "def": "possibly true, able to be believed, reasonable", "tags": ["reason"], "ru": "правдоподобный", "n": 298},
+{"word": "Notion", "def": "a belief or idea", "tags": ["reason"], "ru": "понятие", "n": 299},
+{"word": "Impartial", "def": "able to judge something fairly", "tags": ["trait", "action"], "ru": "беспристрастный", "n": 300}];
+const CONFLICTS = [["Vexing","Irksome"],["Erratic","Sporadic"],["Coerce","Compel"],["Enfranchise","Suffrage"],["Attest","Substantiate"],["Conjecture","Speculate"],["Inevitable","Inexorable"],["Unprecedented","Innovative"],["Malign","Detrimental"],["Formulate","Conceive"],["Spawn","Engender"],["Adequate","Viable"],["Adequate","Feasible"],["Reconcile","Conflate"],["Content","Indifference"],["Tangible","Apparent"],["Scorn","Indifference"],["Venerable","Reverence"],["Eloquent","Colloquial"],["Colloquial","Vernacular"],["Yield","Renounce"],["Yield","Concede"],["Sovereignty","Omnipotence"],["Dispassionate","Indifference"],["Allude","Invoke"],["Feasible","Viable"],["Inherent","Temperament"],["Formulate","Spawn"],["Formulate","Engender"],["Conceive","Spawn"],["Conceive","Engender"],["Substantiate","Engender"],["Prompt","Provoke"],["Engender","Provoke"],["Fluctuate","Erratic"],["Fluctuate","Sporadic"],["Postulate","Speculate"]];
+const conflictSet = new Set(CONFLICTS.map(p=>p.slice().sort().join('|')));
+const el = id => document.getElementById(id);
+let questions=[], current=0, answers=[], timeouts=0, interval=null, deadline=0, active=false, showAll=false, mistakesOnly=false;
+function shuffle(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function conflicts(a,b){return conflictSet.has([a,b].sort().join('|'));}
+function optionSet(answer, chosen, usage){
+  let pool=VOCAB.filter(v=>v.word!==answer.word&&!conflicts(v.word,answer.word));
+  const scored=pool.map(v=>{
+    const overlap=v.tags.filter(t=>answer.tags.includes(t)).length;
+    const selectedPenalty=chosen.has(v.word)?1.2:0;
+    const usedPenalty=(usage[v.word]||0)*1.45;
+    const noise=Math.random()*1.25;
+    return {v,score:overlap*5.4-selectedPenalty-usedPenalty+noise};
+  }).sort((a,b)=>b.score-a.score);
+  const out=[];
+  for(const item of scored){if(out.length===3)break;out.push(item.v);usage[item.v.word]=(usage[item.v.word]||0)+1;}
+  return shuffle([answer,...out]);
+}
+function buildTest(){
+  const selected=shuffle(VOCAB).slice(0,50);const chosen=new Set(selected.map(x=>x.word));const usage={};
+  questions=selected.map(q=>({answer:q.word,def:q.def,choices:optionSet(q,chosen,usage)}));
+  current=0;answers=[];timeouts=0;showAll=false;mistakesOnly=false;
+}
+function start(){clearInterval(interval);buildTest();el('start').classList.add('hidden');el('results').classList.add('hidden');el('quiz').classList.remove('hidden');active=true;renderQuestion();}
+function renderQuestion(){
+  if(current>=questions.length){finish();return;}
+  const q=questions[current];el('counter').textContent=`QUESTION ${current+1} / 50`;el('progressBar').style.width=`${current/50*100}%`;
+  el('definition').textContent=q.def;el('choices').innerHTML='';
+  q.choices.forEach((choice,i)=>{const btn=document.createElement('button');btn.className='choice';btn.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span></span>`;btn.querySelector('span:last-child').textContent=choice.word;btn.addEventListener('click',()=>answer(choice.word));el('choices').appendChild(btn);});
+  el('answeredLabel').textContent='Keep moving. Trust your first answer.';startTimer();
+}
+function startTimer(){clearInterval(interval);deadline=Date.now()+9000;tick();interval=setInterval(tick,100);}
+function tick(){const remaining=Math.max(0,deadline-Date.now());const seconds=Math.ceil(remaining/1000);el('timerNum').textContent=seconds;el('timerNum').classList.toggle('low',seconds<=2);el('progressBar').style.width=`${(current+(1-remaining/9000))/50*100}%`;if(remaining<=0){clearInterval(interval);answers.push({question:questions[current],selected:null,timeout:true});timeouts++;current++;renderQuestion();}}
+function answer(word){if(!active)return;clearInterval(interval);answers.push({question:questions[current],selected:word,timeout:false});current++;renderQuestion();}
+function skip(){if(!active)return;clearInterval(interval);answers.push({question:questions[current],selected:null,timeout:false,skipped:true});current++;renderQuestion();}
+function finish(){active=false;clearInterval(interval);el('quiz').classList.add('hidden');el('results').classList.remove('hidden');el('progressBar').style.width='100%';
+  const correct=answers.filter(a=>a.selected===a.question.answer).length;const skipped=answers.filter(a=>!a.selected&&!a.timeout).length;const missed=answers.length-correct;
+  el('resultTitle').textContent=correct>=45?'Excellent recall.':correct>=35?'Solid work.':'Good diagnostic.';el('scoreBig').textContent=`${correct}/50`;el('scoreLine').textContent=`${Math.round(correct/50*100)}% correct · ${missed} missed`;el('resultStats').innerHTML=`<span class="pill">Timed out: ${timeouts}</span><span class="pill">Skipped: ${skipped}</span><span class="pill">Correct: ${correct}</span>`;
+  el('reviewToggle').textContent='Show all 50 answers';showAll=false;mistakesOnly=false;renderReview();
+}
+function renderReview(){const target=el('reviewList');target.innerHTML='';answers.forEach((a,i)=>{const correct=a.selected===a.question.answer;if(!showAll&&!mistakesOnly&&correct)return;if(mistakesOnly&&correct)return;const item=document.createElement('div');item.className='review';const qNum=document.createElement('div');qNum.className='qnum';qNum.textContent=`QUESTION ${i+1} · ${correct?'CORRECT':a.timeout?'TIMEOUT':a.skipped?'SKIPPED':'INCORRECT'}`;const def=document.createElement('div');def.className='rdef';def.textContent=a.question.def;const you=document.createElement('div');you.className=correct?'right':'your';you.textContent=`Your answer: ${a.selected||'No answer'}`;const right=document.createElement('div');right.className='right';right.textContent=`Correct word: ${a.question.answer}`;item.append(qNum,def,you,right);target.appendChild(item);});
+  if(!target.children.length){target.innerHTML='<p class="note">No mistakes — perfect score.</p>';}
+}
+el('startBtn').addEventListener('click',start);el('skipBtn').addEventListener('click',skip);el('retryBtn').addEventListener('click',()=>{el('start').classList.remove('hidden');el('results').classList.add('hidden');el('quiz').classList.add('hidden');});
+el('reviewToggle').addEventListener('click',()=>{showAll=!showAll;mistakesOnly=false;el('reviewToggle').textContent=showAll?'Show mistakes only':'Show all 50 answers';renderReview();});
+el('mistakesBtn').addEventListener('click',()=>{showAll=false;mistakesOnly=true;el('reviewToggle').textContent='Show all 50 answers';renderReview();el('reviewList').scrollIntoView({behavior:'smooth',block:'start'});});
+
+// Custom card slots (independent from the randomized test)
+let cardSlots = [{id:1,name:"Slot 1",words:[]}], nextSlotId=2;
+const selectedWords = new Set();
+function escText(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function renderSlots(){
+ const root=el('slotList');root.innerHTML='';
+ cardSlots.forEach(slot=>{
+  const box=document.createElement('div');box.className='review';box.style.margin='12px 0';
+  const head=document.createElement('div');head.style.cssText='display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap';
+  const title=document.createElement('strong');title.textContent=slot.name+' · '+slot.words.length+'/20';
+  const actions=document.createElement('div');actions.style.cssText='display:flex;gap:7px;flex-wrap:wrap';
+  const rename=document.createElement('button');rename.className='btn secondary';rename.textContent='Rename';rename.style.padding='8px 10px';rename.onclick=()=>{const n=prompt('Slot name:',slot.name);if(n&&n.trim()){slot.name=n.trim();renderSlots();}};
+  const study=document.createElement('button');study.className='btn secondary';study.textContent='Open cards';study.style.padding='8px 10px';study.disabled=!slot.words.length;study.onclick=()=>showStudy(slot);
+  const del=document.createElement('button');del.className='btn secondary';del.textContent='Delete';del.style.padding='8px 10px';del.onclick=()=>{if(cardSlots.length===1)cardSlots=[];cardSlots=cardSlots.filter(x=>x.id!==slot.id);renderSlots();};
+  actions.append(rename,study,del);head.append(title,actions);box.append(head);
+  if(!slot.words.length){const p=document.createElement('p');p.className='note';p.textContent='Empty slot — select words below.';box.append(p);}
+  else {const list=document.createElement('div');list.style.cssText='display:flex;flex-wrap:wrap;gap:6px;margin-top:10px';
+   slot.words.forEach(w=>{const chip=document.createElement('button');chip.className='btn secondary';chip.style.cssText='padding:7px 9px;font-size:12px';chip.textContent=w+' ×';chip.title='Remove from this slot';chip.onclick=()=>{slot.words=slot.words.filter(x=>x!==w);renderSlots();};list.append(chip);});box.append(list);}
+  root.append(box);
+ });
+ const target=el('targetSlot');target.innerHTML='';
+ cardSlots.forEach(slot=>{const o=document.createElement('option');o.value=slot.id;o.textContent=slot.name+' ('+slot.words.length+'/20)';target.append(o);});
+}
+function renderPicker(){
+ const root=el('wordPicker'), query=el('wordSearch').value.trim().toLowerCase();root.innerHTML='';
+ VOCAB.filter(v=>v.word.toLowerCase().includes(query)||v.def.toLowerCase().includes(query)||(v.ru||'').toLowerCase().includes(query)).forEach(v=>{
+  const label=document.createElement('label');label.style.cssText='display:flex;gap:9px;align-items:flex-start;background:#0d1528;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;cursor:pointer';
+  const cb=document.createElement('input');cb.type='checkbox';cb.checked=selectedWords.has(v.word);cb.onchange=()=>{cb.checked?selectedWords.add(v.word):selectedWords.delete(v.word);};
+  const text=document.createElement('span');text.innerHTML='<b>'+escText(v.word)+'</b><br><span style="color:var(--muted)">'+escText(v.ru||'—')+'</span>';
+  label.append(cb,text);root.append(label);
+ });
+}
+function showStudy(slot){
+ let index=0;
+ const overlay=document.createElement('div');overlay.style.cssText='position:fixed;inset:0;background:#050916ed;z-index:1000;display:grid;place-items:center;padding:18px';
+ const card=document.createElement('div');card.className='panel';card.style.cssText='width:min(600px,100%);max-height:90vh;overflow:auto';
+ const close=document.createElement('button');close.className='btn secondary';close.textContent='Close';close.onclick=()=>overlay.remove();
+ const content=document.createElement('div');
+ const nav=document.createElement('div');nav.style.cssText='display:flex;gap:10px;margin-top:18px';
+ const prev=document.createElement('button');prev.className='btn secondary';prev.textContent='← Previous';
+ const next=document.createElement('button');next.className='btn primary';next.textContent='Next →';
+ function draw(){const v=VOCAB.find(x=>x.word===slot.words[index]);content.innerHTML='';const count=document.createElement('div');count.className='eyebrow';count.textContent=slot.name+' · CARD '+(index+1)+' / '+slot.words.length;
+ const word=document.createElement('h2');word.style.cssText='font-size:clamp(30px,7vw,46px);margin:18px 0 8px';word.textContent=v.word;
+ const ru=document.createElement('div');ru.style.cssText='font-size:18px;color:var(--accent2);margin-bottom:18px';ru.textContent=v.ru||'Перевод не указан';
+ const def=document.createElement('p');def.style.cssText='font-size:18px;line-height:1.6';def.textContent=v.def;
+ content.append(count,word,ru,def);prev.disabled=index===0;next.disabled=index===slot.words.length-1;}
+ prev.onclick=()=>{index--;draw();};next.onclick=()=>{index++;draw();};
+ nav.append(prev,next);card.append(close,content,nav);overlay.append(card);document.body.append(overlay);draw();
+}
+el('openCardsBtn').onclick=()=>{el('start').classList.add('hidden');el('results').classList.add('hidden');el('quiz').classList.add('hidden');el('cardsPanel').classList.remove('hidden');renderSlots();renderPicker();};
+el('backCardsBtn').onclick=()=>{el('cardsPanel').classList.add('hidden');el('start').classList.remove('hidden');};
+el('addSlotBtn').onclick=()=>{cardSlots.push({id:nextSlotId++,name:'Slot '+nextSlotId,words:[]});renderSlots();};
+el('wordSearch').addEventListener('input',renderPicker);
+el('addSelectedBtn').onclick=()=>{
+ const slot=cardSlots.find(x=>String(x.id)===el('targetSlot').value);
+ if(!slot){el('cardNotice').textContent='Create a slot first.';return;}
+ const chosen=[...selectedWords];const available=chosen.filter(w=>!slot.words.includes(w));const room=20-slot.words.length;const add=available.slice(0,room);
+ slot.words.push(...add);renderSlots();renderPicker();
+ el('cardNotice').textContent=add.length+' word(s) added to '+slot.name+'.'+(available.length>room?' Slot limit is 20; remaining words were not added.':'');
+};
+
+</script></body></html>
